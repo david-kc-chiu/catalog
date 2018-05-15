@@ -11,11 +11,11 @@ jupyter:
   limits:
     cpu: 8
     memory: 160GB
-    nvidia.com/gpu: 2
+    gpu: 2
   requests:
     cpu: 4
     memory: 80GB
-    nvidia.com/gpu: 1
+    gpu: 1
 tensorboard:
   image:
     repository: tensorflow/tensorflow

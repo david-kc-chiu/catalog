@@ -4,7 +4,7 @@ categories:
 questions:
 - variable: defaultImage
   default: "true"
-  description: "Use default Docker image"
+  description: "Use default tensorflow image v1.7.1 devel gpu python3"
   label: Use Default Image
   type: boolean
   show_subquestion_if: false
@@ -16,7 +16,7 @@ questions:
     type: string
     label: Tensorflow Image Name
   - variable: jupyter.image.tag
-    default: "1.6.0-devel"
+    default: "1.7.1-devel-gpu-py3"
     description: "tensorflow notebook image tag"
     type: string
     label: Image Tag
@@ -26,7 +26,7 @@ questions:
     type: string
     label: Tensorboard Image Name
   - variable: tensorboard.image.tag
-    default: "1.6.0-devel"
+    default: "1.7.1-devel-gpu-py3"
     description: "tensorboard image tag"
     type: string
     label: Image Tag
@@ -40,23 +40,17 @@ questions:
     - "LoadBalancer"
   required: true
   label: Tensorflow Notebook Service Type
-  show_subquestion_if: "NodePort"
-  group: "Services and Load Balancing"
-  subquestions:
-  - variable: notebookPort.http
-    default: ""
-    description: "NodePort http port(to set explicitly, choose port between 30000-32767)"
-    type: int
-    min: 30000
-    max: 32767
-    label: tensorflow notebook NodePort Http Port
-  - variable: tensorboardPort.http
-    default: ""
-    description: "NodePort http port(to set explicitly, choose port between 30000-32767)"
-    type: int
-    min: 30000
-    max: 32767
-    label: tensorboard NodePort Http Port
+
+- variable: service.type
+  default: "NodePort"
+  description: "Tensorflow Notebook Service type"
+  type: enum
+  options:
+    - "ClusterIP"
+    - "NodePort"
+    - "LoadBalancer"
+  required: true
+  label: Tensorflow Notebook Service Type
 - variable: jupyter.requests.nvidia.com/gpu
     default: 1
     description: "number of GPUs"
