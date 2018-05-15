@@ -10,13 +10,13 @@ questions:
   show_subquestion_if: false
   group: "Container Images"
   subquestions:
-  - variable: image.repository
+  - variable: jupyter.image.repository
     default: "tensorflow/tensorflow"
-    description: "WordPress image name"
+    description: "tensorflow notebook image name"
     type: string
     label: WordPress Image Name
-  - variable: image.tag
+  - variable: jupyter.image.tag
     default: "1.6.0-devel"
-    description: "WordPress image tag"
+    description: "tensorflow notebook image tag"
     type: string
     label: Image Tag
