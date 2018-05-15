@@ -11,13 +11,19 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: 6006
-      targetPort: {{ .Values.tensorboardPort.http }}
+      targetPort: tensorboard
       protocol: TCP
       name: tensorboard
+      {{- if (and (eq .Values.serviceType "NodePort") (not (empty .Values.nodePorts.http)))}}
+      nodePort: {{ .Values.tensorboardPort.http }}
+      {{- end }}
     - port: 8888
-      targetPort: {{ .Values.notebookPort.http }}
+      targetPort: jupyter
       protocol: TCP
       name: jupyter
+      {{- if (and (eq .Values.serviceType "NodePort") (not (empty .Values.nodePorts.http)))}}
+      nodePort: {{ .Values.notebookPort.http }}
+      {{- end }}
   selector:
     app: {{ template "tensorflow-notebook.name" . }}
     release: {{ .Release.Name }}
