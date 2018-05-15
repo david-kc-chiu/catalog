@@ -55,7 +55,7 @@ spec:
           imagePullPolicy: {{ .Values.tensorboard.image.pullPolicy }}
           resources:
             limits:
-              nvidia.com/gpu:0
+              nvidia.com/gpu: 0
           ports:
             - containerPort: 6006
               name: tensorboard
