@@ -8,14 +8,14 @@ jupyter:
     pullPolicy: IfNotPresent
   password: tensorflow
   resources: {}
-  # limits:
-  #  cpu: 100m
-  #  memory: 128Mi
-  #  nvidia.com/gpu: 1
-  # requests:
-  #  cpu: 100m
-  #  memory: 128Mi
-  #  nvidia.com/gpu: 1
+  limits:
+    cpu: 8
+    memory: 160GB
+    nvidia.com/gpu: 2
+  requests:
+    cpu: 4
+    memory: 80GB
+    nvidia.com/gpu: 1
 tensorboard:
   image:
     repository: tensorflow/tensorflow

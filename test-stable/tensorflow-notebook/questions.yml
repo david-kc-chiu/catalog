@@ -57,3 +57,9 @@ questions:
     min: 30000
     max: 32767
     label: tensorboard NodePort Http Port
+- variable: jupyter.requests.nvidia.com/gpu
+    default: 1
+    description: "number of GPUs"
+    type: int
+    min: 1
+    max: 8
