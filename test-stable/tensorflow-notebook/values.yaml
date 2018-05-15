@@ -11,7 +11,7 @@ jupyter:
 tensorboard:
   image:
     repository: tensorflow/tensorflow
-    tag: 1.7.1-devel-gpu-py3
+    tag: 1.7.1-devel-py3
     pullPolicy: IfNotPresent
 notebookPort:
   http: ""

@@ -26,7 +26,7 @@ questions:
     type: string
     label: Tensorboard Image Name
   - variable: tensorboard.image.tag
-    default: "1.7.1-devel-gpu-py3"
+    default: "1.7.1-devel-py3"
     description: "tensorboard image tag"
     type: string
     label: Image Tag
