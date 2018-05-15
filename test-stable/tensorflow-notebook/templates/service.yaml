@@ -14,14 +14,14 @@ spec:
       targetPort: tensorboard
       protocol: TCP
       name: tensorboard
-      {{- if (and (eq .Values.serviceType "NodePort") (not (empty .Values.nodePorts.http)))}}
+      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.tensorboardPort.http)))}}
       nodePort: {{ .Values.tensorboardPort.http }}
       {{- end }}
     - port: 8888
       targetPort: jupyter
       protocol: TCP
       name: jupyter
-      {{- if (and (eq .Values.serviceType "NodePort") (not (empty .Values.nodePorts.http)))}}
+      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.notebookPort.http)))}}
       nodePort: {{ .Values.notebookPort.http }}
       {{- end }}
   selector:
