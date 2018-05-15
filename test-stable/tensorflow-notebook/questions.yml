@@ -40,10 +40,10 @@ questions:
     - "LoadBalancer"
   required: true
   label: Tensorflow Notebook Service Type
-- variable: jupyter.resources.limits.nvidia.com/gpu
+- variable: jupyter.gpuNumber
   label: Set number of GPUs
   default: 1
-  description: "Number of GPUs choose number between 0-8)"
+  description: "Number of GPUs choose number between 0-8"
   type: int
   min: 1
   max: 8
