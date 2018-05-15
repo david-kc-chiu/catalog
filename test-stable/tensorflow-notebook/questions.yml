@@ -40,20 +40,10 @@ questions:
     - "LoadBalancer"
   required: true
   label: Tensorflow Notebook Service Type
-
-- variable: service.type
-  default: "NodePort"
-  description: "Tensorflow Notebook Service type"
-  type: enum
-  options:
-    - "ClusterIP"
-    - "NodePort"
-    - "LoadBalancer"
-  required: true
-  label: Tensorflow Notebook Service Type
 - variable: jupyter.resources.limits.nvidia.com/gpu
+  label: Set number of GPUs
   default: 1
-  description: "Number of GPUs"
+  description: "Number of GPUs choose number between 0-8)"
   type: int
   min: 1
   max: 8

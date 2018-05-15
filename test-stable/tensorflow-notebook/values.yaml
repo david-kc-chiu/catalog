@@ -7,9 +7,7 @@ jupyter:
     tag: 1.7.1-devel-gpu-py3
     pullPolicy: IfNotPresent
   password: tensorflow
-  resources:
-    limits: 
-      nvidia.com/gpu: 1
+  gpuNumber: 1
 tensorboard:
   image:
     repository: tensorflow/tensorflow
