@@ -51,9 +51,9 @@ questions:
     - "LoadBalancer"
   required: true
   label: Tensorflow Notebook Service Type
-- variable: jupyter.requests.nvidia.com/gpu
-    default: 1
-    description: "number of GPUs"
-    type: int
-    min: 1
-    max: 8
+- variable: jupyter.resources.limits.nvidia.com/gpu
+  default: 1
+  description: "Number of GPUs"
+  type: int
+  min: 1
+  max: 8
