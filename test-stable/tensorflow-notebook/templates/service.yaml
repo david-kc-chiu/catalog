@@ -11,11 +11,11 @@ spec:
   type: {{ .Values.service.type }}
   ports:
     - port: 6006
-      targetPort: tensorboard
+      targetPort: {{ .Values.tensorboardPort.http }}
       protocol: TCP
       name: tensorboard
     - port: 8888
-      targetPort: jupyter
+      targetPort: {{ .Values.notebookPort.http }}
       protocol: TCP
       name: jupyter
   selector:

@@ -14,9 +14,46 @@ questions:
     default: "tensorflow/tensorflow"
     description: "tensorflow notebook image name"
     type: string
-    label: WordPress Image Name
+    label: Tensorflow Image Name
   - variable: jupyter.image.tag
     default: "1.6.0-devel"
     description: "tensorflow notebook image tag"
     type: string
     label: Image Tag
+  - variable: tensorboard.image.repository
+    default: "tensorflow/tensorflow"
+    description: "tensorboard image name"
+    type: string
+    label: Tensorboard Image Name
+  - variable: tensorboard.image.tag
+    default: "1.6.0-devel"
+    description: "tensorboard image tag"
+    type: string
+    label: Image Tag
+- variable: service.type
+  default: "NodePort"
+  description: "Tensorflow Notebook Service type"
+  type: enum
+  options:
+    - "ClusterIP"
+    - "NodePort"
+    - "LoadBalancer"
+  required: true
+  label: Tensorflow Notebook Service Type
+  show_subquestion_if: "NodePort"
+  group: "Services and Load Balancing"
+  subquestions:
+  - variable: notebookPort.http
+    default: ""
+    description: "NodePort http port(to set explicitly, choose port between 30000-32767)"
+    type: int
+    min: 30000
+    max: 32767
+    label: tensorflow notebook NodePort Http Port
+  - variable: tensorboardPort.http
+    default: ""
+    description: "NodePort http port(to set explicitly, choose port between 30000-32767)"
+    type: int
+    min: 30000
+    max: 32767
+    label: tensorboard NodePort Http Port
