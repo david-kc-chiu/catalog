@@ -1,0 +1,38 @@
+categories:
+- DeepLearning
+questions:
+- variable: defaultImage
+  default: "true"
+  description: "Use default DIGITS image 6.0"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: digits.image.repository
+    default: "nvidia/digits"
+    description: "DIGITS image name"
+    type: string
+    label: Digits Image Name
+  - variable: digits.image.tag
+    default: "6.0"
+    description: "digits image tag"
+    type: string
+    label: Image Tag
+- variable: service.type
+  default: "NodePort"
+  description: "DIGITS Service type"
+  type: enum
+  options:
+    - "ClusterIP"
+    - "NodePort"
+    - "LoadBalancer"
+  required: true
+  label: Digits Service Type
+- variable: digits.gpuNumber
+  label: Set number of GPUs
+  default: 1
+  description: "Number of GPUs choose number between 0-8"
+  type: int
+  min: 1
+  max: 8

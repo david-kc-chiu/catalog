@@ -1,0 +1,53 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "nvidia-digits.fullname" . }}
+  labels:
+    app: {{ template "nvidia-digits.name" . }}
+    chart: {{ template "nvidia-digits.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ template "nvidia-digits.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "nvidia-digits.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.digits.image.repository }}:{{ .Values.digits.image.tag }}"
+          imagePullPolicy: "{{ .Values.digits.pullPolicy }}"
+          ports:
+            - name: http
+              containerPort: 5000
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+          resources:
+            limits:
+              nvidia.com/gpu: {{ .Values.digits.gpuNumber }}
+#{{ toYaml .Values.resources | indent 12 }}
+#    {{- with .Values.nodeSelector }}
+#      nodeSelector:
+#{{ toYaml . | indent 8 }}
+#    {{- end }}
+#    {{- with .Values.affinity }}
+#      affinity:
+#{{ toYaml . | indent 8 }}
+#    {{- end }}
+#    {{- with .Values.tolerations }}
+#      tolerations:
+#{{ toYaml . | indent 8 }}
+#    {{- end }}
