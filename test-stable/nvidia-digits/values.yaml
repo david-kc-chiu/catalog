@@ -15,7 +15,10 @@ digitsPort:
 service:
   type: NodePort
   port: 5000
-
+persistent:
+  enable: false
+  size: 50Gi
+  pvc: ""
 ingress:
   enabled: false
   annotations: {}
