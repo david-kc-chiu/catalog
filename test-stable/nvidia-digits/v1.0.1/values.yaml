@@ -18,7 +18,7 @@ service:
 persistent:
   enable: false
   size: 50Gi
-  pvc: ""
+  pvc: "david-pvc"
 ingress:
   enabled: false
   annotations: {}
