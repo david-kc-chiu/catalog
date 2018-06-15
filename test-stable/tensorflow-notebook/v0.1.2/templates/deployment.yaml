@@ -78,7 +78,7 @@ spec:
         - name: nfs-pv-storage
         {{- if .Values.persistent.enable }}
           persistentVolumeClaim:
-          claimName: {{ .Values.persistent.pvc }}
+            claimName: {{ .Values.persistent.pvc }}
         {{- else }}
           emptyDir: {}
         {{ end }}

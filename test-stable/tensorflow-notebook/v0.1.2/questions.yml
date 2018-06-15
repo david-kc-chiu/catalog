@@ -1,11 +1,10 @@
 categories:
-- Blog
-- CMS
+- DeepLearning
 questions:
 - variable: defaultImage
   default: "true"
   description: "Use default tensorflow image v1.7.1 devel gpu python3"
-  label: Use Default Image test01
+  label: Use Default Image test02
   type: boolean
   show_subquestion_if: false
   group: "Container Images"
