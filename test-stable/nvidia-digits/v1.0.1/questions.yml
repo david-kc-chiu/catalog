@@ -4,7 +4,7 @@ questions:
 - variable: defaultImage
   default: "true"
   description: "Use default DIGITS image 6.0"
-  label: Use Default Image
+  label: Use Default Image test01
   type: boolean
   show_subquestion_if: false
   group: "Container Images"
