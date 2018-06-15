@@ -19,6 +19,7 @@ persistent:
   enable: false
   size: 50Gi
   pvc: "david-pvc"
+  path: "/data"
 ingress:
   enabled: false
   annotations: {}

@@ -38,6 +38,17 @@ spec:
           resources:
             limits:
               nvidia.com/gpu: {{ .Values.digits.gpuNumber }}
+          volumeMounts:
+          - mountPath: {{ .Values.persistent.path }}
+            name: volumeMountDataPath
+      volumes:
+      - name: persistentData
+      {{- if .Values.persistent.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistence.pvc | default (include "fullname" .) }}
+      {{- else }}
+        emptyDir: {}
+      {{ end }}
 #{{ toYaml .Values.resources | indent 12 }}
 #    {{- with .Values.nodeSelector }}
 #      nodeSelector:
