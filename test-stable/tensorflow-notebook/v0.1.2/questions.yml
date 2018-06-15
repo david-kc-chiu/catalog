@@ -46,6 +46,11 @@ questions:
   type: int
   min: 1
   max: 8
+- variable: jupyter.password
+    default: "tensorflow"
+    description: "jupyter notebook login password"
+    type: string
+    label: Jupyter notebook login password
 - variable: persistent.enable
   default: "false"
   description: "Enable persistent volume"

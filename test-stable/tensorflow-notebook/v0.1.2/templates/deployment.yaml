@@ -22,6 +22,9 @@ spec:
         - name: jupyter
           image: "{{ .Values.jupyter.image.repository }}:{{ .Values.jupyter.image.tag }}"
           imagePullPolicy: {{ .Values.jupyter.image.pullPolicy }}
+          {{- if .Values.persistent.enable }}
+          workingDir: "{{ .Values.persistent.path }}"
+          {{ end }}
           resources:
             limits:
               nvidia.com/gpu: {{ .Values.jupyter.gpuNumber }}
@@ -32,7 +35,7 @@ spec:
             - jupyter
           args:
             - notebook
-            - --allow-root      
+            - --allow-root
           env:
             - name: PASSWORD
               valueFrom:
