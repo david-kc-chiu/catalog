@@ -1,35 +1,46 @@
 categories:
-- DeepLearning
+- Blog
+- CMS
 questions:
 - variable: defaultImage
   default: "true"
-  description: "Use default DIGITS image 6.0"
-  label: Use Default Image
+  description: "Use default tensorflow image v1.7.1 devel gpu python3"
+  label: Use Default Image test01
   type: boolean
   show_subquestion_if: false
   group: "Container Images"
   subquestions:
-  - variable: digits.image.repository
-    default: "nvidia/digits"
-    description: "DIGITS image name"
+  - variable: jupyter.image.repository
+    default: "tensorflow/tensorflow"
+    description: "tensorflow notebook image name"
     type: string
-    label: Digits Image Name
-  - variable: digits.image.tag
-    default: "6.0"
-    description: "digits image tag"
+    label: Tensorflow Image Name
+  - variable: jupyter.image.tag
+    default: "1.7.1-devel-gpu-py3"
+    description: "tensorflow notebook image tag"
+    type: string
+    label: Image Tag
+  - variable: tensorboard.image.repository
+    default: "tensorflow/tensorflow"
+    description: "tensorboard image name"
+    type: string
+    label: Tensorboard Image Name
+  - variable: tensorboard.image.tag
+    default: "1.7.1-devel-py3"
+    description: "tensorboard image tag"
     type: string
     label: Image Tag
 - variable: service.type
   default: "NodePort"
-  description: "DIGITS Service type"
+  description: "Tensorflow Notebook Service type"
   type: enum
   options:
     - "ClusterIP"
     - "NodePort"
     - "LoadBalancer"
   required: true
-  label: Digits Service Type
-- variable: digits.gpuNumber
+  label: Tensorflow Notebook Service Type
+- variable: jupyter.gpuNumber
   label: Set number of GPUs
   default: 1
   description: "Number of GPUs choose number between 0-8"
