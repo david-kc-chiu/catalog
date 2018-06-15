@@ -4,7 +4,7 @@ questions:
 - variable: defaultImage
   default: "true"
   description: "Use default DIGITS image 6.0"
-  label: Use Default Image test09
+  label: Use Default Image test10
   type: boolean
   show_subquestion_if: false
   group: "Container Images"
@@ -57,5 +57,5 @@ questions:
   - variable: persistent.path
     default: "/data"
     description: "Mount path"
-    type: string
+    type: volumes
     label: Persistentvolumeclaims mount path
