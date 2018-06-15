@@ -40,7 +40,7 @@ spec:
               nvidia.com/gpu: {{ .Values.digits.gpuNumber }}
           volumeMounts:
           - mountPath: {{ .Values.persistent.path }}
-            name: volumeMountDataPath
+            name: persistentData
       volumes:
       - name: persistentData
       {{- if .Values.persistent.enabled }}
