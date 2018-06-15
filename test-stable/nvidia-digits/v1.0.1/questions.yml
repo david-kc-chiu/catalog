@@ -4,7 +4,7 @@ questions:
 - variable: defaultImage
   default: "true"
   description: "Use default DIGITS image 6.0"
-  label: Use Default Image test02
+  label: Use Default Image test03
   type: boolean
   show_subquestion_if: false
   group: "Container Images"
@@ -52,5 +52,5 @@ questions:
   - variable: persistent.pvc
     default: "david-pvc"
     description: "If undefined or null, uses the default persistentvolumeclaims. Default to null"
-    type: string
+    type: persistentvolumeclaims
     label: Default persistentvolumeclaims
