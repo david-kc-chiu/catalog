@@ -4,7 +4,7 @@ questions:
 - variable: defaultImage
   default: "true"
   description: "Use default DIGITS image 6.0"
-  label: Use Default Image test06
+  label: Use Default Image test07
   type: boolean
   show_subquestion_if: false
   group: "Container Images"
@@ -36,7 +36,7 @@ questions:
   type: int
   min: 1
   max: 8
-- variable: persistentEnabled
+- variable: persistent.enable
   default: "false"
   description: "Enable persistent volume"
   label: Persistent Volume Enabled

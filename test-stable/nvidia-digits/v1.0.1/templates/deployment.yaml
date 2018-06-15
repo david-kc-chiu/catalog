@@ -43,7 +43,7 @@ spec:
             name: nfs-pv-storage
       volumes:
       - name: nfs-pv-storage
-      {{- if .Values.persistent.enabled }}
+      {{- if .Values.persistent.enable }}
         persistentVolumeClaim:
           claimName: {{ .Values.persistence.pvc | default (include "fullname" .) }}
       {{- else }}
