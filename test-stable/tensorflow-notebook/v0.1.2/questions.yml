@@ -4,7 +4,7 @@ questions:
 - variable: defaultImage
   default: "true"
   description: "Use default tensorflow image v1.7.1 devel gpu python3"
-  label: Use Default Image test02
+  label: Use Default Image test03
   type: boolean
   show_subquestion_if: false
   group: "Container Images"
@@ -47,10 +47,10 @@ questions:
   min: 1
   max: 8
 - variable: jupyter.password
-    default: "tensorflow"
-    description: "jupyter notebook login password"
-    type: string
-    label: Jupyter notebook login password
+  default: "tensorflow"
+  description: "jupyter notebook login password"
+  type: string
+  label: Jupyter notebook login password
 - variable: persistent.enable
   default: "false"
   description: "Enable persistent volume"
