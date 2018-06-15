@@ -40,9 +40,9 @@ spec:
               nvidia.com/gpu: {{ .Values.digits.gpuNumber }}
           volumeMounts:
           - mountPath: {{ .Values.persistent.path }}
-            name: persistentData
+            name: nfs-pv-storage
       volumes:
-      - name: persistentData
+      - name: nfs-pv-storage
       {{- if .Values.persistent.enabled }}
         persistentVolumeClaim:
           claimName: {{ .Values.persistence.pvc | default (include "fullname" .) }}
