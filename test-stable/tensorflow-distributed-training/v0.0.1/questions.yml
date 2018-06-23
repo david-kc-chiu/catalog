@@ -1,0 +1,76 @@
+categories:
+- DeepLearning
+questions:
+- variable: defaultImage
+  default: "true"
+  description: "Use default tensorflow image v1.7.1 devel gpu python3"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: jupyter.image.repository
+    default: "tensorflow/tensorflow"
+    description: "tensorflow notebook image name"
+    type: string
+    label: Tensorflow Image Name
+  - variable: jupyter.image.tag
+    default: "1.7.1-devel-gpu-py3"
+    description: "tensorflow notebook image tag"
+    type: string
+    label: Image Tag
+  - variable: tensorboard.image.repository
+    default: "tensorflow/tensorflow"
+    description: "tensorboard image name"
+    type: string
+    label: Tensorboard Image Name
+  - variable: tensorboard.image.tag
+    default: "1.7.1-devel-py3"
+    description: "tensorboard image tag"
+    type: string
+    label: Image Tag
+- variable: service.type
+  default: "NodePort"
+  description: "Tensorflow Notebook Service type"
+  type: enum
+  options:
+    - "ClusterIP"
+    - "NodePort"
+    - "LoadBalancer"
+  required: true
+  label: Tensorflow Notebook Service Type
+- variable: jupyter.gpuNumber
+  label: Set number of GPUs
+  default: 1
+  description: "Number of GPUs choose number between 0-8"
+  type: int
+  min: 1
+  max: 8
+- variable: jupyter.password
+  default: "tensorflow"
+  description: "jupyter notebook login password"
+  type: string
+  label: Jupyter notebook login password
+- variable: persistent.enable
+  default: "false"
+  description: "Enable persistent volume"
+  label: Persistent Volume Enabled
+  type: boolean
+  show_subquestion_if: true
+  group: "Persistent Settings"
+  subquestions:
+  - variable: persistent.size
+    default: "10Gi"
+    description: "Persistent Volume Size"
+    type: string
+    label: Volume Size
+  - variable: persistent.pvc
+    default: "david-pvc"
+    description: "If undefined or null, uses the default persistentvolumeclaims. Default to null"
+    type: string
+    label: Default persistentvolumeclaims
+  - variable: persistent.path
+    default: "/data"
+    description: "Mount path"
+    type: string
+    label: Persistentvolumeclaims mount path

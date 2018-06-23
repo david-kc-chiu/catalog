@@ -1,0 +1,12 @@
+apiVersion: v1
+description: A Helm chart for tensorflow distributed training
+name: tensorflow-distributed-training
+version: 0.0.1
+appVersion: 0.0.1
+sources:
+  - https://github.com/tensorflow/tensorflow
+  - https://github.com/jupyter
+home: https://www.tensorflow.org
+maintainers:
+  - name: david
+    email: david@david.com
