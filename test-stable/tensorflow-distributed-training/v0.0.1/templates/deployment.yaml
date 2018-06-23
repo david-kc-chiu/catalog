@@ -20,7 +20,7 @@ spec:
                 - mountPath: {{ .Values.persistent.path }}
                   name: nfs-pv-storage
               args: 
-                - "--{{ .Values.exec.command }}""
+                - "--{{ .Values.exec.command }}"
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
@@ -44,7 +44,7 @@ spec:
                 - mountPath: {{ .Values.persistent.path }}
                   name: nfs-pv-storage
               args: 
-                - "--{{ .Values.exec.command }}""
+                - "--{{ .Values.exec.command }}"
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
