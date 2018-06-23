@@ -39,7 +39,7 @@ spec:
               name: tensorflow
               resources:
               limits:
-                nvidia.com/gpu: {{ .Values.jupyter.gpuNumber }}
+                nvidia.com/gpu: {{ .Values.worker.gpunumber }}
               volumeMounts:
                 - mountPath: {{ .Values.persistent.path }}
                   name: nfs-pv-storage

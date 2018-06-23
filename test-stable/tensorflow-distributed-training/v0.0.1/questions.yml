@@ -3,8 +3,8 @@ categories:
 questions:
 - variable: psimage
   default: "false"
-  description: "Use default tensorflow image v1.7.1 devel gpu python3"
-  label: Use Default Image
+  description: "Use default tensorflow image v1.7.1 devel python3"
+  label: Parameter Server Use Default Image
   type: boolean
   show_subquestion_if: false
   group: "Parameter server settings"
@@ -22,14 +22,14 @@ questions:
     type: string
     label: Tensorflow Image Name of parameter server
   - variable: ps.image.tag
-    default: "1.7.1-devel-gpu-py3"
+    default: "1.7.1-devel-py3"
     description: "tensorflow parameter server image tag"
     type: string
     label: Image Tag
 - variable: workerimage
   default: "false"
   description: "Use default tensorflow image v1.7.1 devel gpu python3"
-  label: Use Default Image
+  label: Worker Host Use Default Image
   type: boolean
   show_subquestion_if: false
   group: "Worker server settings"
@@ -45,7 +45,7 @@ questions:
     default: "tensorflow/tensorflow"
     description: "tensorflow worker server image name"
     type: string
-    label: Tensorflow Image Name of parameter server
+    label: Tensorflow Image Name of worker server
   - variable: worker.image.tag
     default: "1.7.1-devel-gpu-py3"
     description: "tensorflow worker image tag"
@@ -60,7 +60,7 @@ questions:
     max: 8
 - variable: masterimage
   default: "false"
-  description: "Use default tensorflow image v1.7.1 devel gpu python3"
+  description: "Use default tensorflow image v1.7.1 devel python3"
   label: Use Default Image
   type: boolean
   show_subquestion_if: false
@@ -79,7 +79,7 @@ questions:
     type: string
     label: Tensorflow Image Name of master server
   - variable: master.image.tag
-    default: "1.7.1-devel-gpu-py3"
+    default: "1.7.1-devel-py3"
     description: "tensorflow master server image tag"
     type: string
     label: Image Tag
