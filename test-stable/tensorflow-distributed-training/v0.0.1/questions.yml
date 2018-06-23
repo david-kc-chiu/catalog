@@ -33,6 +33,7 @@ questions:
   type: boolean
   show_subquestion_if: false
   group: "Worker server settings"
+  subquestions:
   - variable: worker.number
     label: Set number of worker hosts
     default: 2
@@ -64,6 +65,7 @@ questions:
   type: boolean
   show_subquestion_if: false
   group: "Master server settings"
+  subquestions:
   - variable: master.number
     label: Set number of master hosts
     default: 0
