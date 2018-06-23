@@ -19,6 +19,8 @@ spec:
               volumeMounts:
                 - mountPath: {{ .Values.persistent.path }}
                   name: nfs-pv-storage
+              args: 
+                - "--{{ .Values.exec.command }}""
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
@@ -41,6 +43,8 @@ spec:
               volumeMounts:
                 - mountPath: {{ .Values.persistent.path }}
                   name: nfs-pv-storage
+              args: 
+                - "--{{ .Values.exec.command }}""
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
@@ -60,6 +64,8 @@ spec:
               volumeMounts:
                 - mountPath: {{ .Values.persistent.path }}
                   name: nfs-pv-storage
+              args: 
+                - "--{{ .Values.exec.command }}"
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage

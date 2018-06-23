@@ -1,64 +1,91 @@
 categories:
 - DeepLearning
 questions:
-- variable: ps.number
-  label: Set number of ps hosts
-  default: 2
-  description: "Number of parameter hosts choose number between 0-8"
-  type: int
-  min: 1
-  max: 8
-- variable: ps.image.repository
-  default: "tensorflow/tensorflow"
-  description: "tensorflow parameter server image name"
+- variable: psimage
+  default: "false"
+  description: "Use default tensorflow image v1.7.1 devel gpu python3"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Parameter server settings"
+  subquestions:
+  - variable: ps.number
+    label: Set number of ps hosts
+    default: 2
+    description: "Number of parameter hosts choose number between 0-8"
+    type: int
+    min: 1
+    max: 8
+  - variable: ps.image.repository
+    default: "tensorflow/tensorflow"
+    description: "tensorflow parameter server image name"
+    type: string
+    label: Tensorflow Image Name of parameter server
+  - variable: ps.image.tag
+    default: "1.7.1-devel-gpu-py3"
+    description: "tensorflow parameter server image tag"
+    type: string
+    label: Image Tag
+- variable: workerimage
+  default: "false"
+  description: "Use default tensorflow image v1.7.1 devel gpu python3"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Worker server settings"
+  - variable: worker.number
+    label: Set number of worker hosts
+    default: 2
+    description: "Number of worker hosts choose number between 0-8"
+    type: int
+    min: 0
+    max: 8
+  - variable: worker.image.repository
+    default: "tensorflow/tensorflow"
+    description: "tensorflow worker server image name"
+    type: string
+    label: Tensorflow Image Name of parameter server
+  - variable: worker.image.tag
+    default: "1.7.1-devel-gpu-py3"
+    description: "tensorflow worker image tag"
+    type: string
+    label: Image Tag
+  - variable: worker.gpuNumber
+    label: Set number of worker hosts gpu resource
+    default: 1
+    description: "Number of worker hosts gpu resource choose number between 0-8"
+    type: int
+    min: 0
+    max: 8
+- variable: masterimage
+  default: "false"
+  description: "Use default tensorflow image v1.7.1 devel gpu python3"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Master server settings"
+  - variable: master.number
+    label: Set number of master hosts
+    default: 0
+    description: "Number of master hosts choose number between 0-8"
+    type: int
+    min: 0
+    max: 8
+  - variable: master.image.repository
+    default: "tensorflow/tensorflow"
+    description: "tensorflow master server image name"
+    type: string
+    label: Tensorflow Image Name of master server
+  - variable: master.image.tag
+    default: "1.7.1-devel-gpu-py3"
+    description: "tensorflow master server image tag"
+    type: string
+    label: Image Tag
+- variable: exec.command
+  default: "python,/data/mnist_replica.py"
+  description: "tensorflow execute command"
   type: string
-  label: Tensorflow Image Name of parameter server
-- variable: ps.image.tag
-  default: "1.7.1-devel-gpu-py3"
-  description: "tensorflow parameter server image tag"
-  type: string
-  label: Image Tag
-- variable: worker.number
-  label: Set number of worker hosts
-  default: 2
-  description: "Number of worker hosts choose number between 0-8"
-  type: int
-  min: 0
-  max: 8
-- variable: worker.image.repository
-  default: "tensorflow/tensorflow"
-  description: "tensorflow worker server image name"
-  type: string
-  label: Tensorflow Image Name of parameter server
-- variable: worker.image.tag
-  default: "1.7.1-devel-gpu-py3"
-  description: "tensorflow worker image tag"
-  type: string
-  label: Image Tag
-- variable: worker.gpuNumber
-  label: Set number of worker hosts gpu resource
-  default: 1
-  description: "Number of worker hosts gpu resource choose number between 0-8"
-  type: int
-  min: 0
-  max: 8
-- variable: master.number
-  label: Set number of master hosts
-  default: 0
-  description: "Number of master hosts choose number between 0-8"
-  type: int
-  min: 0
-  max: 8
-- variable: master.image.repository
-  default: "tensorflow/tensorflow"
-  description: "tensorflow master server image name"
-  type: string
-  label: Tensorflow Image Name of master server
-- variable: master.image.tag
-  default: "1.7.1-devel-gpu-py3"
-  description: "tensorflow master server image tag"
-  type: string
-  label: Image Tag
+  label: tensorflow code execute command
 - variable: persistent.enable
   default: "false"
   description: "Enable persistent volume"

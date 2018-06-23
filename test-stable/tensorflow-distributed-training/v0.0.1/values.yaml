@@ -28,7 +28,10 @@ persistent:
   size: 50Gi
   pvc: "claim-david"
   path: "/data"
-
+exec:
+  command:
+  - ls
+  - /data
 service:
   type: ClusterIP
   port: 80
