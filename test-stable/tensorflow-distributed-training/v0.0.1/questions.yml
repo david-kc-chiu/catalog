@@ -2,9 +2,9 @@ categories:
 - DeepLearning
 questions:
 - variable: psimage
-  default: "true"
+  default: "false"
   description: "Use default tensorflow image v1.7.1 devel gpu python3"
-  label: Use Default Image test01
+  label: Use Default Image
   type: boolean
   show_subquestion_if: false
   group: "Parameter server settings"
@@ -27,7 +27,7 @@ questions:
     type: string
     label: Image Tag
 - variable: workerimage
-  default: "true"
+  default: "false"
   description: "Use default tensorflow image v1.7.1 devel gpu python3"
   label: Use Default Image
   type: boolean
@@ -58,7 +58,7 @@ questions:
     min: 0
     max: 8
 - variable: masterimage
-  default: "true"
+  default: "false"
   description: "Use default tensorflow image v1.7.1 devel gpu python3"
   label: Use Default Image
   type: boolean
