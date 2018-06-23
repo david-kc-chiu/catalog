@@ -14,7 +14,7 @@ spec:
       template:
         spec:
           containers:
-            - image: "{{ .Values.master.image.repository  }}:{{ .Values.master.image.tag }}"
+            - image: "{{ .Values.master.image.repository }}:{{ .Values.master.image.tag }}"
               name: tensorflow
               volumeMounts:
                 - mountPath: {{ .Values.persistent.path }}
@@ -39,7 +39,7 @@ spec:
               name: tensorflow
               resources:
               limits:
-                nvidia.com/gpu: {{ .Values.worker.gpunumber }}
+                nvidia.com/gpu: {{ .Values.worker.gpuNumber }}
               volumeMounts:
                 - mountPath: {{ .Values.persistent.path }}
                   name: nfs-pv-storage
