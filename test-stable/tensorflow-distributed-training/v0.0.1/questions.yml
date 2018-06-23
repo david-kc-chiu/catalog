@@ -1,56 +1,64 @@
 categories:
 - DeepLearning
 questions:
-- variable: defaultImage
-  default: "true"
-  description: "Use default tensorflow image v1.7.1 devel gpu python3"
-  label: Use Default Image
-  type: boolean
-  show_subquestion_if: false
-  group: "Container Images"
-  subquestions:
-  - variable: jupyter.image.repository
-    default: "tensorflow/tensorflow"
-    description: "tensorflow notebook image name"
-    type: string
-    label: Tensorflow Image Name
-  - variable: jupyter.image.tag
-    default: "1.7.1-devel-gpu-py3"
-    description: "tensorflow notebook image tag"
-    type: string
-    label: Image Tag
-  - variable: tensorboard.image.repository
-    default: "tensorflow/tensorflow"
-    description: "tensorboard image name"
-    type: string
-    label: Tensorboard Image Name
-  - variable: tensorboard.image.tag
-    default: "1.7.1-devel-py3"
-    description: "tensorboard image tag"
-    type: string
-    label: Image Tag
-- variable: service.type
-  default: "NodePort"
-  description: "Tensorflow Notebook Service type"
-  type: enum
-  options:
-    - "ClusterIP"
-    - "NodePort"
-    - "LoadBalancer"
-  required: true
-  label: Tensorflow Notebook Service Type
-- variable: jupyter.gpuNumber
-  label: Set number of GPUs
-  default: 1
-  description: "Number of GPUs choose number between 0-8"
+- variable: ps.number
+  label: Set number of ps hosts
+  default: 2
+  description: "Number of parameter hosts choose number between 0-8"
   type: int
   min: 1
   max: 8
-- variable: jupyter.password
-  default: "tensorflow"
-  description: "jupyter notebook login password"
+- variable: ps.image.repository
+  default: "tensorflow/tensorflow"
+  description: "tensorflow parameter server image name"
   type: string
-  label: Jupyter notebook login password
+  label: Tensorflow Image Name of parameter server
+- variable: ps.image.tag
+  default: "1.7.1-devel-gpu-py3"
+  description: "tensorflow parameter server image tag"
+  type: string
+  label: Image Tag
+- variable: worker.number
+  label: Set number of worker hosts
+  default: 2
+  description: "Number of worker hosts choose number between 0-8"
+  type: int
+  min: 0
+  max: 8
+- variable: worker.image.repository
+  default: "tensorflow/tensorflow"
+  description: "tensorflow worker server image name"
+  type: string
+  label: Tensorflow Image Name of parameter server
+- variable: worker.image.tag
+  default: "1.7.1-devel-gpu-py3"
+  description: "tensorflow worker image tag"
+  type: string
+  label: Image Tag
+- variable: worker.gpuNumber
+  label: Set number of worker hosts gpu resource
+  default: 1
+  description: "Number of worker hosts gpu resource choose number between 0-8"
+  type: int
+  min: 0
+  max: 8
+- variable: master.number
+  label: Set number of master hosts
+  default: 0
+  description: "Number of master hosts choose number between 0-8"
+  type: int
+  min: 0
+  max: 8
+- variable: master.image.repository
+  default: "tensorflow/tensorflow"
+  description: "tensorflow master server image name"
+  type: string
+  label: Tensorflow Image Name of master server
+- variable: master.image.tag
+  default: "1.7.1-devel-gpu-py3"
+  description: "tensorflow master server image tag"
+  type: string
+  label: Image Tag
 - variable: persistent.enable
   default: "false"
   description: "Enable persistent volume"
@@ -65,7 +73,7 @@ questions:
     type: string
     label: Volume Size
   - variable: persistent.pvc
-    default: "david-pvc"
+    default: "claim-david"
     description: "If undefined or null, uses the default persistentvolumeclaims. Default to null"
     type: string
     label: Default persistentvolumeclaims

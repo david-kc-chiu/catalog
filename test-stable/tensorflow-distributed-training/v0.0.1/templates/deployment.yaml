@@ -9,27 +9,63 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   replicaSpecs:
-    - replicas: 1
+    - replicas: "{{ .Values.master.number}}"
       tfReplicaType: MASTER
       template:
         spec:
           containers:
-            - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            - image: "{{ .Values.master.image.repository  }}:{{ .Values.master.image.tag }}"
               name: tensorflow
+              volumeMounts:
+                - mountPath: {{ .Values.persistent.path }}
+                  name: nfs-pv-storage
           restartPolicy: OnFailure
-    - replicas: 2
+          volumes:
+          - name: nfs-pv-storage
+          {{- if .Values.persistent.enable }}
+            persistentVolumeClaim:
+              claimName: {{ .Values.persistent.pvc }}
+          {{- else }}
+            emptyDir: {}
+          {{ end }}
+    - replicas: "{{ .Values.worker.number}}"
       tfReplicaType: WORKER
       template:
         spec:
           containers:
-            - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            - image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"
               name: tensorflow
+              resources:
+              limits:
+                nvidia.com/gpu: {{ .Values.jupyter.gpuNumber }}
+              volumeMounts:
+                - mountPath: {{ .Values.persistent.path }}
+                  name: nfs-pv-storage
           restartPolicy: OnFailure
-    - replicas: 2
+          volumes:
+          - name: nfs-pv-storage
+          {{- if .Values.persistent.enable }}
+            persistentVolumeClaim:
+              claimName: {{ .Values.persistent.pvc }}
+          {{- else }}
+            emptyDir: {}
+          {{ end }}
+    - replicas: "{{ .Values.ps.number}}"
       tfReplicaType: PS
       template:
         spec:
           containers:
-            - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+            - image: "{{ .Values.ps.image.repository }}:{{ .Values.ps.image.tag }}"
               name: tensorflow
+              volumeMounts:
+                - mountPath: {{ .Values.persistent.path }}
+                  name: nfs-pv-storage
           restartPolicy: OnFailure
+          volumes:
+          - name: nfs-pv-storage
+          {{- if .Values.persistent.enable }}
+            persistentVolumeClaim:
+              claimName: {{ .Values.persistent.pvc }}
+          {{- else }}
+            emptyDir: {}
+          {{ end }}

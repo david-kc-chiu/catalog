@@ -3,10 +3,31 @@
 # Declare variables to be passed into your templates.
 
 replicaCount: 1
-image:
-  repository: gcr.io/tf-on-k8s-dogfood/tf_sample
-  tag: dc944ff
-  pullPolicy: IfNotPresent
+ps:
+  image:
+    repository: tensorflow/tensorflow
+    tag: 1.7.1-devel-py3
+    pullPolicy: IfNotPresent
+  number: 2
+worker:
+  image:
+    repository: tensorflow/tensorflow
+    tag: 1.7.1-devel-py3
+    pullPolicy: IfNotPresent
+  number: 2
+  gpuNumber: 1
+master:
+  image:
+    repository: tensorflow/tensorflow
+    tag: 1.7.1-devel-py3
+    pullPolicy: IfNotPresent
+  number: 0
+
+persistent:
+  enable: false
+  size: 50Gi
+  pvc: "claim-david"
+  path: "/data"
 
 service:
   type: ClusterIP
