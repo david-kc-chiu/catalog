@@ -1,0 +1,61 @@
+{{- $gpuCount := .Values.gpuCount -}}
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "tensorflow-serving.fullname" . }}
+  labels:
+    heritage: {{ .Release.Service | quote }}
+    release: {{ .Release.Name | quote }}
+    chart: {{ template "tensorflow-serving.chart" . }}
+    app: {{ template "tensorflow-serving.name" . }}
+  annotations:
+    "helm.sh/created": {{ .Release.Time.Seconds | quote }}
+spec:
+  replicas: {{ .Values.replicas }}
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      release: {{ .Release.Name | quote }}
+      app: {{ template "tensorflow-serving.name" . }} 
+  template:
+    metadata:
+      labels:
+        heritage: {{ .Release.Service | quote }}
+        release: {{ .Release.Name | quote }}
+        chart: {{ template "tensorflow-serving.chart" . }}
+        app: {{ template "tensorflow-serving.name" . }}
+    spec:
+      containers:
+        - name: serving
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: "{{ .Values.image.pullPolicy }}"
+          resources:
+            limits:
+              nvidia.com/gpu: "{{ .Values.image.gpuNumber }}""
+          command:
+            - "/usr/bin/tensorflow_model_server"
+          args:
+            - "--port={{ .Values.service.port }}"
+            - "--model_name={{ .Values.service.modelName }}"
+            - "--model_base_path={{ .Values.service.modelBasePath }}"
+          ports:
+            - containerPort: 9090
+              name: serving
+              protocol: TCP
+          readinessProbe:
+            tcpSocket:
+              port: serving
+            initialDelaySeconds: 15
+            timeoutSeconds: 1
+          volumeMounts:
+            - mountPath: {{ .Values.persistent.path }}
+              name: nfs-pv-storage
+      volumes:
+        - name: nfs-pv-storage
+      {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+              claimName: {{ .Values.persistence.pvc }}
+      {{- else }}
+          emptyDir: {}
+      {{- end }}

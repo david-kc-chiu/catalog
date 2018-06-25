@@ -1,0 +1,84 @@
+categories:
+- DeepLearning
+questions:
+- variable: defaultImage
+  default: "false"
+  description: "Use default cheyang/tf-model-server-gpu"
+  label: Tensorflow Serving Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: image.repository
+    default: "cheyang/tf-model-server-gpu"
+    description: "tensorflow serving image name"
+    type: string
+    label: Tensorflow Serving Image Name
+  - variable: image.tag
+    default: "1.4"
+    description: "tensorflow notebook image tag"
+    type: string
+    label: Image Tag
+  - variable: image.gpuNumber
+    label: Set number of GPUs
+    default: 1
+    description: "Number of GPUs choose number between 0-8"
+    type: int
+    min: 1
+    max: 8
+- variable: serviceSetting
+  default: "false"
+  description: "Set serving settings"
+  label: Tensorflow Serving settings
+  type: boolean
+  show_subquestion_if: false
+  group: "Serving Group"
+  subquestions:
+  - variable: service.type
+    default: "NodePort"
+    description: "Tensorflow Serving Service type"
+    type: enum
+    options:
+      - "ClusterIP"
+      - "NodePort"
+      - "LoadBalancer"
+    required: true
+    label: Tensorflow Serving Service Type
+  - variable: service.port
+    default: 9090
+    description: "Tensorflow serving port number"
+    type: int
+    label: Tensorflow Serving Service port number
+  - variable: service.modelName
+    default: "inception"
+    description: "Tensorflow serving model name"
+    type: string
+    label: Tensorflow Serving Service model name
+  - variable: service.modelBasePath
+    default: "/data/model/mnist"
+    description: "Tensorflow serving model path"
+    type: string
+    label: Tensorflow Serving Service model path
+- variable: persistent.enable
+  default: "true"
+  description: "Enable persistent volume"
+  label: Persistent Volume Enabled
+  type: boolean
+  show_subquestion_if: true
+  group: "Persistent Settings"
+  subquestions:
+  - variable: persistent.size
+    default: "50Gi"
+    description: "Persistent Volume Size"
+    type: string
+    label: Volume Size
+  - variable: persistent.pvc
+    default: "claim-david"
+    description: "If undefined or null, uses the default persistentvolumeclaims. Default to null"
+    type: string
+    label: Default persistentvolumeclaims
+  - variable: persistent.path
+    default: "/data"
+    description: "Mount path"
+    type: string
+    label: Persistentvolumeclaims mount path

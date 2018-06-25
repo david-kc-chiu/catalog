@@ -1,0 +1,44 @@
+# Default values for tensorflow-serving.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicas: 1
+## Kubernetes configuration
+## support NodePort, LoadBalancer
+##
+## expose the service to the grpc client
+service:
+  type: LoadBalancer
+  port: 9090
+  replicas: 1
+  modelName: "inception"
+  modelBasePath: "/serving/inception-export"
+
+# repository: "cheyang/tf-model-server-gpu"
+image:
+  repository: "cheyang/tf-model-server"
+  tag: "1.4"
+  pullPolicy: "IfNotPresent"
+  gpuNumber: 1
+resources: {}
+  #  limits:
+  #    cpu: 1.0
+  #    memory: 512Mi
+  #    nvidia.com/gpu: 1
+  #  requests:
+  #    cpu: 1.0
+  #    memory: 512Mi
+  #    nvidia.com/gpu: 1
+
+
+## The command and args to run the pod
+
+
+## the mount path inside the container
+# mountPath: /serving/inception-export
+
+persistence:
+  enabled: true
+  size: 50Gi
+  pvc: "david-pvc"
+  path: "/data"
+ # matchLabels: {}
