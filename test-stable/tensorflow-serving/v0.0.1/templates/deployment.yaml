@@ -32,7 +32,7 @@ spec:
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
           resources:
             limits:
-              nvidia.com/gpu: "{{ .Values.image.gpuNumber }}""
+              nvidia.com/gpu: "{{ .Values.image.gpuNumber }}"
           command:
             - "/usr/bin/tensorflow_model_server"
           args:
