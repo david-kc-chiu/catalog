@@ -1,4 +1,4 @@
-# TensorFlow Serving test06
+# TensorFlow Serving test07
 
 TensorFlow Serving is an open-source software library for serving machine learning models. We hope to demonstrate how to deploy a generic TensorFlow Model Server and serve a model from distributed storage instead of baking into the image like [TensorFlow inception](../../incubator/tensorflow-inception/README.md). 
 

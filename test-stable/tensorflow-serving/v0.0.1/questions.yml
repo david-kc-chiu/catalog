@@ -55,7 +55,7 @@ questions:
     type: string
     label: Tensorflow Serving Service model name
   - variable: service.modelBasePath
-    default: "/data/model/mnist"
+    default: "/data/models/mnist"
     description: "Tensorflow serving model path"
     type: string
     label: Tensorflow Serving Service model path
