@@ -15,10 +15,10 @@ service:
 
 # repository: "cheyang/tf-model-server-gpu"
 image:
-  repository: "cheyang/tf-model-server"
+  repository: "cheyang/tf-model-server-gpu"
   tag: "1.4"
   pullPolicy: "IfNotPresent"
-  gpuNumber: 1
+#  gpuNumber: 1
 resources: {}
   #  limits:
   #    cpu: 1.0
