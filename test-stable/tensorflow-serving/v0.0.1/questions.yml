@@ -3,14 +3,14 @@ categories:
 questions:
 - variable: defaultImage
   default: "false"
-  description: "Use default cheyang/tf-model-server-gpu"
+  description: "Use default cheyang/tf-model-server"
   label: Tensorflow Serving Use Default Image
   type: boolean
   show_subquestion_if: false
   group: "Container Images"
   subquestions:
   - variable: image.repository
-    default: "cheyang/tf-model-server-gpu"
+    default: "cheyang/tf-model-server"
     description: "tensorflow serving image name"
     type: string
     label: Tensorflow Serving Image Name

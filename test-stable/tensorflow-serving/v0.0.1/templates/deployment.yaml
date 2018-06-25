@@ -30,9 +30,9 @@ spec:
         - name: serving
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: "{{ .Values.image.pullPolicy }}"
-          resources:
-            limits:
-              nvidia.com/gpu: "{{ .Values.image.gpuNumber }}"
+          #resources:
+          #  limits:
+          #    nvidia.com/gpu: "{{ .Values.image.gpuNumber }}"
           command:
             - "/usr/bin/tensorflow_model_server"
           args:
