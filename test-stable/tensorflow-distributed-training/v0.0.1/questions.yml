@@ -84,10 +84,15 @@ questions:
     type: string
     label: Image Tag
 - variable: exec.command
-  default: "python,/data/mnist_replica.py"
+  default: "python"
   description: "tensorflow execute command"
   type: string
   label: tensorflow code execute command
+- variable: exec.args
+  default: "/data/mnist_replica.py"
+  description: "tensorflow python execute args"
+  type: string
+  label: tensorflow code execute args
 - variable: persistent.enable
   default: "false"
   description: "Enable persistent volume"
