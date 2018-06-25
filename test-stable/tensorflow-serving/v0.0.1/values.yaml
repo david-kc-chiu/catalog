@@ -36,7 +36,7 @@ resources: {}
 ## the mount path inside the container
 # mountPath: /serving/inception-export
 
-persistence:
+persistent:
   enabled: true
   size: 50Gi
   pvc: "david-pvc"
