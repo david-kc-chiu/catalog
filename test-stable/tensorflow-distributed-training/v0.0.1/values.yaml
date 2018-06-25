@@ -21,10 +21,10 @@ master:
     repository: tensorflow/tensorflow
     tag: 1.7.1-devel-py3
     pullPolicy: IfNotPresent
-  number: 0
+  number: 1
 
 persistent:
-  enable: false
+  enable: true
   size: 50Gi
   pvc: "claim-david"
   path: "/data"

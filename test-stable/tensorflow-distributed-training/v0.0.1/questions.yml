@@ -61,7 +61,7 @@ questions:
 - variable: masterimage
   default: "false"
   description: "Use default tensorflow image v1.7.1 devel python3"
-  label: Use Default Image
+  label: Master Host Use Default Image
   type: boolean
   show_subquestion_if: false
   group: "Master server settings"
@@ -94,7 +94,7 @@ questions:
   type: string
   label: tensorflow code execute args
 - variable: persistent.enable
-  default: "false"
+  default: "true"
   description: "Enable persistent volume"
   label: Persistent Volume Enabled
   type: boolean
@@ -102,7 +102,7 @@ questions:
   group: "Persistent Settings"
   subquestions:
   - variable: persistent.size
-    default: "10Gi"
+    default: "50Gi"
     description: "Persistent Volume Size"
     type: string
     label: Volume Size
