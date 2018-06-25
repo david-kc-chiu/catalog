@@ -9,7 +9,7 @@ metadata:
     heritage: {{ .Release.Service }}
 spec:
   replicaSpecs:
-    - replicas: "{{ .Values.master.number}}"
+    - replicas: {{ .Values.master.number}}
       tfReplicaType: MASTER
       template:
         spec:
@@ -19,8 +19,10 @@ spec:
               volumeMounts:
               - mountPath: {{ .Values.persistent.path }}
                 name: nfs-pv-storage
-              command: "{{ .Values.exec.command }}"
-              args: "{{ .Values.exec.args }}"
+              command: 
+                - "{{ .Values.exec.command }}"
+              args: 
+                - "{{ .Values.exec.args }}"
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
@@ -30,7 +32,7 @@ spec:
           {{- else }}
             emptyDir: {}
           {{ end }}
-    - replicas: "{{ .Values.worker.number}}"
+    - replicas: {{ .Values.worker.number}}
       tfReplicaType: WORKER
       template:
         spec:
@@ -43,8 +45,10 @@ spec:
               volumeMounts:
               - mountPath: {{ .Values.persistent.path }}
                 name: nfs-pv-storage
-              command: "{{ .Values.exec.command }}"
-              args: "{{ .Values.exec.args }}"
+              command: 
+                - "{{ .Values.exec.command }}"
+              args: 
+                - "{{ .Values.exec.args }}"
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
@@ -54,7 +58,7 @@ spec:
           {{- else }}
             emptyDir: {}
           {{ end }}
-    - replicas: "{{ .Values.ps.number}}"
+    - replicas: {{ .Values.ps.number}}
       tfReplicaType: PS
       template:
         spec:
@@ -64,8 +68,10 @@ spec:
               volumeMounts:
               - mountPath: {{ .Values.persistent.path }}
                 name: nfs-pv-storage
-              command: "{{ .Values.exec.command }}"
-              args: "{{ .Values.exec.args }}"
+              command: 
+                - "{{ .Values.exec.command }}"
+              args: 
+                - "{{ .Values.exec.args }}"
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
