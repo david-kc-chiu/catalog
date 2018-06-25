@@ -50,7 +50,7 @@ questions:
     type: int
     label: Tensorflow Serving Service port number
   - variable: service.modelName
-    default: "inception"
+    default: "mnist"
     description: "Tensorflow serving model name"
     type: string
     label: Tensorflow Serving Service model name
