@@ -1,2 +1,2 @@
-# TensorFlow distributed Helm Chart test05
+# TensorFlow distributed Helm Chart test06
 

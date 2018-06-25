@@ -19,8 +19,8 @@ spec:
               volumeMounts:
               - mountPath: {{ .Values.persistent.path }}
                 name: nfs-pv-storage
-              command: "[{{ .Values.exec.command }}]"
-              args: "[{{ .Values.exec.args }}]"
+              command: "{{ .Values.exec.command }}"
+              args: "{{ .Values.exec.args }}"
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
@@ -38,13 +38,13 @@ spec:
             - image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"
               name: tensorflow
               resources:
-              limits:
-                nvidia.com/gpu: {{ .Values.worker.gpuNumber }}
+                limits:
+                  nvidia.com/gpu: {{ .Values.worker.gpuNumber }}
               volumeMounts:
               - mountPath: {{ .Values.persistent.path }}
                 name: nfs-pv-storage
-              command: "[{{ .Values.exec.command }}]"
-              args: "[{{ .Values.exec.args }}]"
+              command: "{{ .Values.exec.command }}"
+              args: "{{ .Values.exec.args }}"
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
@@ -64,8 +64,8 @@ spec:
               volumeMounts:
               - mountPath: {{ .Values.persistent.path }}
                 name: nfs-pv-storage
-              command: "[{{ .Values.exec.command }}]"
-              args: "[{{ .Values.exec.args }}]"
+              command: "{{ .Values.exec.command }}"
+              args: "{{ .Values.exec.args }}"
           restartPolicy: OnFailure
           volumes:
           - name: nfs-pv-storage
