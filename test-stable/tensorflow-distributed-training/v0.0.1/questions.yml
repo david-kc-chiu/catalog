@@ -39,7 +39,7 @@ questions:
     default: 2
     description: "Number of worker hosts choose number between 0-8"
     type: int
-    min: 0
+    min: 1
     max: 8
   - variable: worker.image.repository
     default: "tensorflow/tensorflow"
@@ -56,7 +56,7 @@ questions:
     default: 1
     description: "Number of worker hosts gpu resource choose number between 0-8"
     type: int
-    min: 0
+    min: 1
     max: 8
 - variable: masterimage
   default: "false"
@@ -68,10 +68,10 @@ questions:
   subquestions:
   - variable: master.number
     label: Set number of master hosts
-    default: 0
+    default: 1
     description: "Number of master hosts choose number between 0-8"
     type: int
-    min: 0
+    min: 1
     max: 8
   - variable: master.image.repository
     default: "tensorflow/tensorflow"
