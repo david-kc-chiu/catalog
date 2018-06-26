@@ -15,7 +15,6 @@ TensorFlow is an open source software library for numerical computation using da
 This chart will deploy the followings:
 
 - Jupyter Notebook with TensorFlow
-- Tensorboard
 
 ## Installing the Chart
 
@@ -45,11 +44,6 @@ This chart will deploy the followings:
         nvidia.com/gpu: 1
     requests:
         nvidia.com/gpu: 1
-  tensorboard: 
-    image:   
-      repository: tensorflow/tensorflow
-      tag: 1.6.0-devel
-      pullPolicy: IfNotPresent
   service:
     type: LoadBalancer
   ```
@@ -86,8 +80,5 @@ chart and their default values.
 | `jupyter.image.tag` | TensorFlow Development image tag | `1.5.0-devel-gpu` |
 | `jupyter.password` | The password to access jupyter | `mytest` |
 | `jupyter.image.pullPolicy` | image pullPolicy for the  jupyter | `IfNotPresent` |
-| `tensorboard.image.repository` | TensorFlow Development image repository | `tensorflow/tensorflow` |
-| `tensorboard.image.tag` | TensorFlow Development image tag | `1.5.0-devel-gpu` |
-| `tensorboard.image.pullPolicy` | image pullPolicy for the  tensorboard | `IfNotPresent` |
 | `resources` | Set the resource to be allocated and allowed for the Pods | `{}` |
 | `service.type` | service type | `LoadBalancer` |

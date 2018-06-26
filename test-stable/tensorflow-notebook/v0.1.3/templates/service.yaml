@@ -10,13 +10,6 @@ metadata:
 spec:
   type: {{ .Values.service.type }}
   ports:
-    - port: 6006
-      targetPort: tensorboard
-      protocol: TCP
-      name: tensorboard
-      {{- if (and (eq .Values.service.type "NodePort") (not (empty .Values.tensorboardPort.http)))}}
-      nodePort: {{ .Values.tensorboardPort.http }}
-      {{- end }}
     - port: 8888
       targetPort: jupyter
       protocol: TCP

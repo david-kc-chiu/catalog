@@ -55,7 +55,7 @@ questions:
     type: string
     label: Volume Size
   - variable: persistent.pvc
-    default: "david-pvc"
+    default: "claim-david"
     description: "If undefined or null, uses the default persistentvolumeclaims. Default to null"
     type: string
     label: Default persistentvolumeclaims
