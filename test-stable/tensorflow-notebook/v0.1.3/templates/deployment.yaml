@@ -1,0 +1,63 @@
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: {{ template "tensorflow-notebook.fullname" . }}
+  labels:
+    app: {{ template "tensorflow-notebook.name" . }}
+    chart: {{ template "tensorflow-notebook.chart" . }}
+    release: {{ .Release.Name }}
+    heritage: {{ .Release.Service }}
+spec:
+  selector:
+    matchLabels:
+      app: {{ template "tensorflow-notebook.name" . }}
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "tensorflow-notebook.name" . }}
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: jupyter
+          image: "{{ .Values.jupyter.image.repository }}:{{ .Values.jupyter.image.tag }}"
+          imagePullPolicy: {{ .Values.jupyter.image.pullPolicy }}
+          {{- if .Values.persistent.enable }}
+          workingDir: "{{ .Values.persistent.path }}"
+          {{ end }}
+          resources:
+            limits:
+              nvidia.com/gpu: {{ .Values.jupyter.gpuNumber }}
+          ports:
+            - containerPort: 8888
+              name: jupyter
+          command:
+            - jupyter
+          args:
+            - notebook
+            - --allow-root
+          env:
+            - name: PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ template "tensorflow-notebook.fullname" . }}
+                  key: password
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8888
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8888
+          volumeMounts:
+            - mountPath: {{ .Values.persistent.path }}
+              name: nfs-pv-storage
+      volumes:
+        - name: nfs-pv-storage
+        {{- if .Values.persistent.enable }}
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistent.pvc }}
+        {{- else }}
+          emptyDir: {}
+        {{ end }}
