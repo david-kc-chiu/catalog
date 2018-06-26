@@ -42,7 +42,7 @@ questions:
   type: string
   label: Jupyter notebook login password
 - variable: persistent.enable
-  default: "false"
+  default: "true"
   description: "Enable persistent volume"
   label: Persistent Volume Enabled
   type: boolean
@@ -50,7 +50,7 @@ questions:
   group: "Persistent Settings"
   subquestions:
   - variable: persistent.size
-    default: "10Gi"
+    default: "50Gi"
     description: "Persistent Volume Size"
     type: string
     label: Volume Size
