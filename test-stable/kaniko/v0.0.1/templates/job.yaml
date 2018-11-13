@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: build-image
+spec:
+  template:
+    spec:
+      containers:
+      - name: build-image
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        args: 
+        - "--context={{ .Values.container.context }}"
+        - "--dockerfile={{ .Values.container.dockerfile}}"
+        - "--destination={{ .Values.container.destination}}"
+        - "--insecure"
+        - "--skip-tls-verify"
+        volumeMounts:
+        - name: workspace
+          mountPath: {{ .Values.persistent.path }}
+        - name: kaniko-secret
+          mountPath: {{ .Values.kanikoSecret.mountPath }}
+      volumes:
+      - name: workspace
+        {{- if .Values.persistent.enabled }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistent.claimName }}
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+      - name: kaniko-secret
+        secret: 
+          secretName: {{ .Values.kanikoSecret.secretName }}
+     
+      restartPolicy: {{ .Values.container.restartPolicy }}
+      hostAliases:
+      - ip: {{ .Values.registry.ip }}
+        hostnames: 
+        - {{ .Values.registry.hostname }}
+#    backoffLimit: "{{ .Values.container.backoffLimit }}"

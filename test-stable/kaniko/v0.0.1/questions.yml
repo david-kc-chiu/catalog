@@ -1,0 +1,38 @@
+categories:
+- DeepLearning
+questions:
+- variable: registry.hostname
+  default: "harbor.m100.com"
+  description: "harbor registry name"
+  type: string
+  label: harbror registry name
+- variable: registry.ip
+  default: "192.168.9.98"
+  description: "harbor registry ip address"
+  type: string
+  label: harbror registry ip address
+- variable: persistent.claimName
+  default: "claim-user"
+  description: "persistent volume claim name"
+  type: string
+  label: persistent volume claim name
+- variable: persistent.path
+  default: "/workspace"
+  description: "persistent volume mount path"
+  type: string
+  label: persistent volume mount path
+- variable: container.context
+  default: "/workspace/kaniko"
+  description: "specify the location of your build context"
+  type: string
+  label: specify the location of your build context
+- variable: container.dockerfile
+  default: "/workspace/kaniko/Dockerfile"
+  description: "path to Dockerfile within the build context"
+  type: string
+  label: path to Dockerfile within the build context
+- variable: container.destination
+  default: "harbor.m100.com/publicimg/kaniko:test-1"
+  description: "destination of final image"
+  type: string
+  label: destination of final image
