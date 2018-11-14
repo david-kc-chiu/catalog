@@ -29,6 +29,10 @@ registry:
   hostname: "harbor.m100.com"
   ip: "192.168.9.98"
 
+globalHarbor:
+  hostname: "harbor.registry.com"
+  ip: "192.168.19.91"
+
 nameOverride: ""
 fullnameOverride: ""
 

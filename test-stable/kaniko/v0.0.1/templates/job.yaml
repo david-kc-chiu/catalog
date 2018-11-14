@@ -36,4 +36,7 @@ spec:
       - ip: {{ .Values.registry.ip }}
         hostnames: 
         - {{ .Values.registry.hostname }}
+      - ip: {{ .Values.globalHarbor.ip }}
+        hostnames:
+        - {{ .Values.globalHarbor.hostname }}
 #    backoffLimit: "{{ .Values.container.backoffLimit }}"
