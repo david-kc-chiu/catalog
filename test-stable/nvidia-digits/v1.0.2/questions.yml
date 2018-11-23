@@ -1,0 +1,61 @@
+categories:
+- DeepLearning
+questions:
+- variable: defaultImage
+  default: "true"
+  description: "Use default DIGITS image"
+  label: Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Container Images"
+  subquestions:
+  - variable: digits.image.repository
+    default: "harbor.registry.com/deeplearning-image/digits"
+    description: "DIGITS image name"
+    type: string
+    label: Digits Image Name
+  - variable: digits.image.tag
+    default: "ngc-18.11-tensorflow"
+    description: "digits image tag"
+    type: string
+    label: Image Tag
+- variable: service.type
+  default: "NodePort"
+  description: "DIGITS Service type"
+  type: enum
+  options:
+    - "ClusterIP"
+    - "NodePort"
+    - "LoadBalancer"
+  required: true
+  label: Digits Service Type
+- variable: digits.gpuNumber
+  label: Set number of GPUs
+  default: 1
+  description: "Number of GPUs choose number between 0-8"
+  type: int
+  min: 1
+  max: 8
+- variable: persistent.enable
+  default: "false"
+  description: "Enable persistent volume"
+  label: Persistent Volume Enabled
+  type: boolean
+  show_subquestion_if: true
+  group: "Persistent Settings"
+  subquestions:
+  - variable: persistent.size
+    default: "10Gi"
+    description: "Persistent Volume Size"
+    type: string
+    label: Volume Size
+  - variable: persistent.pvc
+    default: "claim-user"
+    description: "If undefined or null, uses the default persistentvolumeclaims. Default to null"
+    type: string
+    label: Default persistentvolumeclaims
+  - variable: persistent.path
+    default: "/data"
+    description: "Mount path"
+    type: string
+    label: Persistentvolumeclaims mount path
