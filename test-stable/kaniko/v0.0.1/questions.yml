@@ -38,6 +38,6 @@ questions:
   label: destination of final image
 - variable: image.pullSecrets
   default: None
-  description: Private registry pull secret
+  description: Private registry secret
   type: string
-  label: Private registry pull secret
+  label: Private registry secret
