@@ -8,6 +8,8 @@ spec:
       containers:
       - name: build-image
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullSecrets:
+        - name: {{ .Values.image.pullSecrets }}
         args: 
         - "--context={{ .Values.container.context }}"
         - "--dockerfile={{ .Values.container.dockerfile}}"

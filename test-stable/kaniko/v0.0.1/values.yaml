@@ -8,6 +8,7 @@ image:
   repository: gcr.io/kaniko-project/executor
   tag: latest
   pullPolicy: IfNotPresent
+  pullSecrets: None
 
 container:
   context: "/workspace/kaniko/" 

@@ -36,3 +36,8 @@ questions:
   description: "destination of final image"
   type: string
   label: destination of final image
+- variable: image.pullSecrets
+  default: None
+  description: Private registry pull secret
+  type: string
+  label: Private registry pull secret
