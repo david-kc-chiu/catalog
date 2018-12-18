@@ -1,0 +1,22 @@
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: {{ include "trtserver.fullname" . }}
+spec:
+  scaleTargetRef:
+    apiVersion: extensions/v1beta1
+    kind: Deployment
+    name: {{ include "trtserver.name" . }}
+  minReplicas: {{ .Values.autoscale.minReplicas }}
+  maxReplicas: {{ .Values.autoscale.maxReplicas }}
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      targetAverageUtilization: {{ .Values.autoscale.cpuTargetUtil }}
+  - type: Resource
+    resource:
+      name: memory
+      targetAverageValue: {{ .Values.autoscale.memTargetVal }}
+

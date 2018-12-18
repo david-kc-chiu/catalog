@@ -1,0 +1,66 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: {{ include "trtserver.name" . }}
+  name: {{ include "trtserver.fullname" . }}
+spec:
+  template:
+    metadata:
+      labels:
+        app: {{ include "trtserver.name" . }}
+        version: v1
+    spec:
+      containers:
+      - args:
+        #- -c
+        #- "while true; do echo hello; sleep 10;done"
+        - --model-store={{ .Values.modelconfig.model_store }}
+        command:
+        #- "/bin/bash"
+        - trtserver
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: IfNotPresent
+        livenessProbe:
+          httpGet:
+            path: /api/health/live
+            port: {{ .Values.service.httpport }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        name: inference-server
+        ports:
+        - containerPort: {{ .Values.service.httpport }}
+        - containerPort: {{ .Values.service.grpcport }}
+        - containerPort: {{ .Values.service.metricsport }}
+        readinessProbe:
+          httpGet:
+            path: /api/health/ready
+            port: {{ .Values.service.httpport }}
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        resources:
+          requests:
+            cpu: {{ .Values.resources.requests.cpu }}
+            memory: {{ .Values.resources.requests.memory }}
+            nvidia.com/gpu: {{ .Values.resources.gpu_num }}
+          limits:
+            cpu: {{ .Values.resources.limits.cpu }}
+            memory: {{ .Values.resources.limits.memory }}
+            nvidia.com/gpu: {{ .Values.resources.gpu_num }}
+#        securityContext:
+#          fsGroup: 1000
+#          runAsUser: 1000
+        volumeMounts:
+        - mountPath: {{ .Values.persistent.path }}
+          name: shared-storage
+      imagePullSecrets:
+      - name: {{ .Values.image.secret }}
+      volumes:
+      - name: shared-storage
+        {{- if .Values.persistent.enable }}
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistent.pvc }}
+        {{- else }}
+        emptyDir: {}
+        {{ end }}
+

@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "trtserver.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "trtserver.name" . }}
+    helm.sh/chart: {{ include "trtserver.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - name: http-inference-server
+      port: {{ .Values.service.httpport }}
+      targetPort: {{ .Values.service.httpport }}
+    - name: grpc-inference-server
+      port: {{ .Values.service.grpcport }}
+      targetPort: {{ .Values.service.grpcport }}
+    - name: metrics-inference-server
+      port: {{ .Values.service.metricsport }}
+      targetPort: {{ .Values.service.metricsport }}
+  selector:
+    app.kubernetes.io/name: {{ include "trtserver.name" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+

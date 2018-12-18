@@ -1,0 +1,79 @@
+categories:
+- DeepLearning
+questions:
+- variable: image.repository
+  default: "harbor.m100.com/publicimg/tensorrtserver"
+  description: "image registry name"
+  type: string
+  label: image registry name
+- variable: image.tag
+  default: "18.11-py3"
+  description: "image tag"
+  type: string
+  label: image tag
+- variable: persistent.pvc
+  default: "claim-user"
+  description: "persistent volume claim name"
+  type: string
+  label: persistent volume claim name
+- variable: persistent.path
+  default: "/data"
+  description: "persistent volume mount path"
+  type: string
+  label: persistent volume mount path
+- variable: resources.requests.cpu
+  default: "2000m"
+  description: "specify the cpu resource requests"
+  type: string
+  label: specify the cpu resource requests
+- variable: resources.requests.memory
+  default: "10Gi"
+  description: "specify the memory resource requests"
+  type: string
+  label: specify the memory resource requests
+- variable: resources.gpu_num
+  default: 1
+  description: "specify the GPU resource requests and limit"
+  type: int
+  label: specify the GPU resource requests and limit
+  min: 1
+  max: 8
+- variable: modelconfig.model_store
+  default: "/data/model_repository/"
+  description: "specify the model store path"
+  type: string
+  label: specify the model store path
+- variable: autoscale.cpuTargetUtil
+  default: 80
+  description: "specify the autoscale cpu utility target"
+  type: int
+  label: specify the GPU resource requests and limit
+  min: 1
+  max: 99
+- variable: autoscale.memTargetVal
+  default: "10Gi"
+  description: "specify the autoscale memory usage target"
+  type: string
+  label: specify the autoscale memory usage target
+- variable: autoscale.httpRequest
+  default: 1000
+  description: "specify the autoscale http request"
+  type: int
+  label: "specify the autoscale http request"
+  min: 1000
+  max: 9999
+- variable: autoscale.minReplicas
+  default: 1
+  description: "specify the autoscale minimal replicas"
+  type: int
+  label: "specify the autoscale minimal replicas"
+  min: 1
+  max: 10
+- variable: autoscale.maxReplicas
+  default: 10
+  description: "specify the autoscale maximal replicas"
+  type: int
+  label: "specify the autoscale maximal replicas"
+  min: 10
+  max: 99
+
