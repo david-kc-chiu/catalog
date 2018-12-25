@@ -7,7 +7,7 @@ spec:
   scaleTargetRef:
     apiVersion: extensions/v1beta1
     kind: Deployment
-    name: {{ include "trtserver.name" . }}
+    name: {{ include "trtserver.fullname" . }}
   minReplicas: {{ .Values.autoscale.minReplicas }}
   maxReplicas: {{ .Values.autoscale.maxReplicas }}
   metrics:

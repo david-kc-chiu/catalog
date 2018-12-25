@@ -1,14 +1,22 @@
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  labels:
-    app: {{ include "trtserver.name" . }}
   name: {{ include "trtserver.fullname" . }}
+  labels:
+    app.kubernetes.io/name: {{ include "trtserver.name" . }}
+    helm.sh/chart: {{ include "trtserver.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
 spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ include "trtserver.name" . }}
+      app.kubernetes.io/instance: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: {{ include "trtserver.name" . }}
+        app.kubernetes.io/name: {{ include "trtserver.name" . }}
+        app.kubernetes.io/instance: {{ .Release.Name }}
         version: v1
     spec:
       containers:

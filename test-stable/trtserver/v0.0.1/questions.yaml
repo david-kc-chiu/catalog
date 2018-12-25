@@ -47,7 +47,7 @@ questions:
   default: 80
   description: "specify the autoscale cpu utility target"
   type: int
-  label: specify the GPU resource requests and limit
+  label: specify the autoscale cpu utility target
   min: 1
   max: 99
 - variable: autoscale.memTargetVal
