@@ -29,23 +29,23 @@ spec:
         - trtserver
         image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
         imagePullPolicy: IfNotPresent
-        livenessProbe:
-          httpGet:
-            path: /api/health/live
-            port: {{ .Values.service.httpport }}
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        #livenessProbe:
+        #  httpGet:
+        #    path: /api/health/live
+        #    port: {{ .Values.service.httpport }}
+        #  initialDelaySeconds: 5
+        #  periodSeconds: 5
         name: inference-server
         ports:
         - containerPort: {{ .Values.service.httpport }}
         - containerPort: {{ .Values.service.grpcport }}
         - containerPort: {{ .Values.service.metricsport }}
-        readinessProbe:
-          httpGet:
-            path: /api/health/ready
-            port: {{ .Values.service.httpport }}
-          initialDelaySeconds: 5
-          periodSeconds: 5
+        #readinessProbe:
+        #  httpGet:
+        #    path: /api/health/ready
+        #    port: {{ .Values.service.httpport }}
+        #  initialDelaySeconds: 5
+        #  periodSeconds: 5
         resources:
           requests:
             cpu: {{ .Values.resources.requests.cpu }}
