@@ -1,0 +1,123 @@
+categories:
+- DeepLearning
+questions:
+- variable: tfjob.version
+  default: "v1alpha2"
+  description: "tfjob api version"
+  type: string
+  label: tfjob api version
+- variable: psimage
+  default: "false"
+  description: "Use sample tensorflow image gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3"
+  label: Parameter Server Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Parameter server settings"
+  subquestions:
+  - variable: ps.number
+    label: Set number of ps hosts
+    default: 1
+    description: "Number of parameter hosts choose number between 0-8"
+    type: int
+    min: 1
+    max: 8
+  - variable: ps.image.repository
+    default: "gcr.io/kubeflow/tf-benchmarks-cpu"
+    description: "tensorflow parameter server image name"
+    type: string
+    label: Tensorflow Image Name of parameter server
+  - variable: ps.image.tag
+    default: "v20171202-bdab599-dirty-284af3"
+    description: "tensorflow parameter server image tag"
+    type: string
+    label: Image Tag
+- variable: workerimage
+  default: "false"
+  description: "Use sample tensorflow image gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3"
+  label: Worker Host Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Worker server settings"
+  subquestions:
+  - variable: worker.number
+    label: Set number of worker hosts
+    default: 2
+    description: "Number of worker hosts choose number between 0-8"
+    type: int
+    min: 1
+    max: 8
+  - variable: worker.image.repository
+    default: "gcr.io/kubeflow/tf-benchmarks-cpu"
+    description: "tensorflow worker server image name"
+    type: string
+    label: Tensorflow Image Name of worker server
+  - variable: worker.image.tag
+    default: "v20171202-bdab599-dirty-284af3"
+    description: "tensorflow worker image tag"
+    type: string
+    label: Image Tag
+  - variable: worker.gpuNumber
+    label: Set number of worker hosts gpu resource
+    default: 1
+    description: "Number of worker hosts gpu resource choose number between 0-8"
+    type: int
+    min: 1
+    max: 8
+- variable: masterimage
+  default: "false"
+  description: "Use sample tensorflow image gcr.io/kubeflow/tf-benchmarks-cpu:v20171202-bdab599-dirty-284af3"
+  label: Master Host Use Default Image
+  type: boolean
+  show_subquestion_if: false
+  group: "Master server settings"
+  subquestions:
+  - variable: master.number
+    label: Set number of master hosts
+    default: 0
+    description: "Number of master hosts choose number between 0-8"
+    type: int
+    min: 0
+    max: 8
+  - variable: master.image.repository
+    default: "gcr.io/kubeflow/tf-benchmarks-cpu"
+    description: "tensorflow master server image name"
+    type: string
+    label: Tensorflow Image Name of master server
+  - variable: master.image.tag
+    default: "v20171202-bdab599-dirty-284af3"
+    description: "tensorflow master server image tag"
+    type: string
+    label: Image Tag
+- variable: exec.command
+  default: "python"
+  description: "tensorflow execute command"
+  type: string
+  label: tensorflow code execute command
+- variable: exec.args
+  default: "[tf_cnn_benchmarks.py,--batch_size=32,--model=resnet50,--variable_update=parameter_server,--flush_stdout=true,--num_gpus=1,--local_parameter_device=cpu,--device=cpu,--data_format=NHWC]"
+  description: "tensorflow python execute args"
+  type: string
+  label: tensorflow code execute args
+- variable: persistent.enable
+  default: "true"
+  description: "Enable persistent volume"
+  label: Persistent Volume Enabled
+  type: boolean
+  show_subquestion_if: true
+  group: "Persistent Settings"
+  subquestions:
+  - variable: persistent.size
+    default: "50Gi"
+    description: "Persistent Volume Size"
+    type: string
+    label: Volume Size
+  - variable: persistent.pvc
+    default: "claim-david"
+    description: "If undefined or null, uses the default persistentvolumeclaims. Default to null"
+    type: string
+    label: Default persistentvolumeclaims
+  - variable: persistent.path
+    default: "/data"
+    description: "Mount path"
+    type: string
+    label: Persistentvolumeclaims mount path

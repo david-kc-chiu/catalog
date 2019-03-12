@@ -1,0 +1,68 @@
+# Default values for tf-job.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+tfjob:
+  version: v1alpha2
+replicaCount: 1
+ps:
+  image:
+    repository: gcr.io/kubeflow/tf-benchmarks-cpu
+    tag: v20171202-bdab599-dirty-284af3
+    pullPolicy: IfNotPresent
+  number: 1
+worker:
+  image:
+    repository: gcr.io/kubeflow/tf-benchmarks-cpu
+    tag: v20171202-bdab599-dirty-284af3
+    pullPolicy: IfNotPresent
+  number: 2
+  gpuNumber: 1
+master:
+  image:
+    repository: gcr.io/kubeflow/tf-benchmarks-cpu
+    tag: v20171202-bdab599-dirty-284af3
+    pullPolicy: IfNotPresent
+  number: 0
+
+persistent:
+  enable: true
+  size: 50Gi
+  pvc: "claim-david"
+  path: "/data"
+exec:
+  command: "python"
+  args: [tf_cnn_benchmarks.py,--batch_size=32,--model=resnet50,--variable_update=parameter_server,--flush_stdout=true,--num_gpus=1,--local_parameter_device=cpu,--device=cpu,--data_format=NHWC]
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  path: /
+  hosts:
+    - chart-example.local
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #  cpu: 100m
+  #  memory: 128Mi
+  # requests:
+  #  cpu: 100m
+  #  memory: 128Mi
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
