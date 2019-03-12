@@ -1,0 +1,13 @@
+apiVersion: v1
+description: A Helm chart for kubeflow tfjob operator
+name: kubeflow-tfjob-operator
+version: 0.0.1
+appVersion: 0.0.1
+sources:
+  - https://github.com/tensorflow/tensorflow
+  - https://github.com/jupyter
+  - https://www.kubeflow.org/docs/components/tftraining/
+home: https://www.tensorflow.org
+maintainers:
+  - name: david
+    email: david@david.com
