@@ -30,7 +30,7 @@ persistent:
   pvc: "claim-name"
   path: "/data"
 exec:
-  command: "" 
+  command: []
   args: ["python","tf_cnn_benchmarks.py","--batch_size=32","--model=resnet50","--variable_update=parameter_server","--flush_stdout=true","--num_gpus=1","--local_parameter_device=cpu","--device=cpu","--data_format=NHWC"]
 service:
   type: ClusterIP

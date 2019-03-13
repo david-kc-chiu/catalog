@@ -17,7 +17,7 @@ spec:
         spec:
           containers:
           - image: "{{ .Values.ps.image.repository }}:{{ .Values.ps.image.tag }}"
-{{- if eq "" .Values.exec.command }}
+{{- if eq "[]" .Values.exec.command }}
             #command: ""
 {{- else }}
             command: {{ toYaml .Values.exec.command | indent 14 }}
@@ -54,7 +54,7 @@ spec:
         spec:
           containers:
           - image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"
-{{- if eq "" .Values.exec.command }}
+{{- if eq "[]" .Values.exec.command }}
             #command: ""
 {{- else }}
             command: {{ toYaml .Values.exec.command | indent 14 }}
@@ -69,7 +69,8 @@ spec:
               name: tfjob-port
             resources:
               limits:
-                nvidia.com/gpu: {{ .Values.worker.gpuNumber }}
+                cpu: '0.5'
+                #nvidia.com/gpu: {{ .Values.worker.gpuNumber }}
             workingDir: /opt/tf-benchmarks/scripts/tf_cnn_benchmarks
             volumeMounts:
               - mountPath: {{ .Values.persistent.path }}
