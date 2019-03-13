@@ -89,12 +89,12 @@ questions:
     type: string
     label: Image Tag
 - variable: exec.command
-  default: "python"
+  default: ""
   description: "tensorflow execute command"
   type: string
   label: tensorflow code execute command
 - variable: exec.args
-  default: "[tf_cnn_benchmarks.py,--batch_size=32,--model=resnet50,--variable_update=parameter_server,--flush_stdout=true,--num_gpus=1,--local_parameter_device=cpu,--device=cpu,--data_format=NHWC]"
+  default: ["python","tf_cnn_benchmarks.py","--batch_size=32","--model=resnet50","--variable_update=parameter_server","--flush_stdout=true","--num_gpus=1","--local_parameter_device=cpu","--device=cpu","--data_format=NHWC"]
   description: "tensorflow python execute args"
   type: string
   label: tensorflow code execute args
