@@ -22,16 +22,16 @@ master:
     repository: gcr.io/kubeflow/tf-benchmarks-cpu
     tag: v20171202-bdab599-dirty-284af3
     pullPolicy: IfNotPresent
-  number: 0
+  number: 1
 
 persistent:
   enable: true
   size: 50Gi
-  pvc: "claim-david"
+  pvc: "claim-name"
   path: "/data"
 exec:
-  command: "python"
-  args: [tf_cnn_benchmarks.py,--batch_size=32,--model=resnet50,--variable_update=parameter_server,--flush_stdout=true,--num_gpus=1,--local_parameter_device=cpu,--device=cpu,--data_format=NHWC]
+  command: "" 
+  args: ["python","tf_cnn_benchmarks.py","--batch_size=32","--model=resnet50","--variable_update=parameter_server","--flush_stdout=true","--num_gpus=1","--local_parameter_device=cpu","--device=cpu","--data_format=NHWC"]
 service:
   type: ClusterIP
   port: 80
