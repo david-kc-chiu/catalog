@@ -17,11 +17,7 @@ spec:
         spec:
           containers:
           - image: "{{ .Values.ps.image.repository }}:{{ .Values.ps.image.tag }}"
-{{- if eq "[]" .Values.exec.command }}
-            #command: ""
-{{- else }}
-            command: {{ toYaml .Values.exec.command | indent 14 }}
-{{- end }}
+            command: {{ .Values.exec.command }}
 {{- if .Values.exec.args }}
             args:
 {{ toYaml .Values.exec.args | indent 14 }}
@@ -54,11 +50,7 @@ spec:
         spec:
           containers:
           - image: "{{ .Values.worker.image.repository }}:{{ .Values.worker.image.tag }}"
-{{- if eq "[]" .Values.exec.command }}
-            #command: ""
-{{- else }}
-            command: {{ toYaml .Values.exec.command | indent 14 }}
-{{- end }}
+            command: {{ .Values.exec.command }}
 {{- if .Values.exec.args }}
             args: 
 {{ toYaml .Values.exec.args | indent 14 }}
